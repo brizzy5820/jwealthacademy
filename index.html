@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
 <style>
   :root{
     --white:#ffffff;
@@ -736,7 +737,7 @@
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#pricing" class="nav-cta">Join JBIS </a></li>
+      <li><a href="https://app.earnerspay.com/checkout/?p=epr-925052" class="nav-cta">Join JBIS </a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu"><i data-lucide="menu"></i></button>
   </nav>
@@ -754,7 +755,8 @@
         <h1>Stop guessing.<br>Start with <em>a roadmap.</em></h1>
         <p class="lede">The beginner course that shows you exactly how online business and affiliate marketing work — even if you're starting from zero.</p>
         <div class="cta-row">
-          <a href="#pricing" class="btn-primary">Join JBIS today <i data-lucide="arrow-right"></i></a>
+          <a href="
+https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS today <i data-lucide="arrow-right"></i></a>
           <span class="price-hint">One-time investment </span>
         </div>
         <div class="hero-trust">
@@ -996,7 +998,8 @@
         <p class="sub">You're not simply paying for videos — you're investing in a structured path designed to save you countless hours of jumping between random advice.</p>
         <div class="price-figure"><span>₦</span>20,000</div>
         <p class="price-caption">One-time payment · instant access</p>
-        <a href="#" class="btn-primary">Join JBIS now <i data-lucide="arrow-right"></i></a>
+        <a href="
+https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS now <i data-lucide="arrow-right"></i></a>
         <ul class="price-includes">
           <li><i data-lucide="check"></i>10 structured modules</li>
           <li><i data-lucide="check"></i>Beginner-to-zero foundations</li>
@@ -1014,7 +1017,8 @@
       <span class="eyebrow">YOUR JOURNEY STARTS TODAY</span>
       <h2>You don't need to know everything before you begin.</h2>
       <p>You just need a place to start. JBIS was built to be that starting point. Your future is built by the skills you choose to develop today.</p>
-      <a href="#pricing" class="btn-primary">Click to join JBIS <i data-lucide="arrow-right"></i></a>
+      <a href="
+https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Click to join JBIS <i data-lucide="arrow-right"></i></a>
       <p class="final-signature">— Coach Jwealth</p>
     </div>
   </section>
@@ -1032,88 +1036,6 @@
   <button class="modal-close" id="modalClose" aria-label="Close"><i data-lucide="x"></i></button>
   <img src="" alt="Enlarged testimonial" id="modalImg">
 </div>
-
-<script>
-  lucide.createIcons();
-
-  // header scroll state
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 10);
-  });
-
-  // mobile nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    navToggle.innerHTML = navLinks.classList.contains('open')
-      ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
-    lucide.createIcons();
-  });
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.innerHTML = '<i data-lucide="menu"></i>';
-    lucide.createIcons();
-  }));
-
-  // scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // roadmap line draw + module nodes
-  const roadmapPath = document.querySelector('.roadmap-svg path.drawn');
-  const roadmapBody = document.getElementById('roadmapBody');
-  const roadmapObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) roadmapPath.classList.add('on');
-    });
-  }, { threshold: 0.05 });
-  roadmapObserver.observe(roadmapBody);
-
-  const modules = document.querySelectorAll('.module');
-  const moduleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-      }
-    });
-  }, { threshold: 0.4 });
-  modules.forEach(m => moduleObserver.observe(m));
-
-  // testimonial modal
-  const overlay = document.getElementById('modalOverlay');
-  const modalImg = document.getElementById('modalImg');
-  const modalClose = document.getElementById('modalClose');
-
-  document.querySelectorAll('.t-item').forEach(item => {
-    item.addEventListener('click', () => {
-      modalImg.src = item.getAttribute('data-full');
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  function closeModal() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  modalClose.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
