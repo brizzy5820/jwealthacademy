@@ -80,6 +80,62 @@
     if (e.key === 'Escape') closeModal();
   });
 
+  // testimonial carousel
+  const carousel = document.getElementById('tCarousel');
+  const track = document.getElementById('tTrack');
+  const dots = Array.from(document.querySelectorAll('.t-dot'));
+  const slideCount = track.children.length;
+  let currentSlide = 0;
+  let autoplay = null;
+
+  function goToSlide(index){
+    currentSlide = (index + slideCount) % slideCount;
+    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+  }
+
+  function startAutoplay(){
+    stopAutoplay();
+    autoplay = setInterval(() => goToSlide(currentSlide + 1), 1500);
+  }
+  function stopAutoplay(){
+    if(autoplay) clearInterval(autoplay);
+    autoplay = null;
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => {
+    goToSlide(i);
+    startAutoplay();
+  }));
+
+  document.getElementById('tPrev').addEventListener('click', () => {
+    goToSlide(currentSlide - 1);
+    startAutoplay();
+  });
+  document.getElementById('tNext').addEventListener('click', () => {
+    goToSlide(currentSlide + 1);
+    startAutoplay();
+  });
+
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  // swipe support
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    stopAutoplay();
+  }, {passive:true});
+  carousel.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(diff) > 50){
+      diff < 0 ? goToSlide(currentSlide + 1) : goToSlide(currentSlide - 1);
+    }
+    startAutoplay();
+  }, {passive:true});
+
+  startAutoplay();
+
 document.addEventListener('DOMContentLoaded', function() {
     // 1. Look for an Affiliate ID in the web address
     var urlParams = new URLSearchParams(window.location.search);

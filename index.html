@@ -502,6 +502,70 @@
   .t-item:hover .zoom-hint{opacity:1;}
   .t-item .zoom-hint svg{width:15px;height:15px;}
 
+  /* carousel */
+  .t-carousel{
+    margin-top:28px;
+    position:relative;
+  }
+  .t-carousel-viewport{
+    overflow:hidden;
+    max-width:340px;
+    margin:0 auto;
+    border-radius:16px;
+    position:relative;
+  }
+  .t-nav{
+    position:absolute;top:50%;
+    transform:translateY(-50%);
+    z-index:3;
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.35);
+    background:rgba(28,22,38,.45);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    opacity:.85;
+    transition:opacity .25s ease, background .25s ease, transform .25s ease;
+  }
+  .t-nav:hover{opacity:1;background:rgba(28,22,38,.75);}
+  .t-nav:active{transform:translateY(-50%) scale(.92);}
+  .t-nav svg{width:20px;height:20px;}
+  .t-prev{left:10px;}
+  .t-next{right:10px;}
+  .t-carousel-track{
+    display:flex;
+    transition:transform .6s cubic-bezier(.19,1,.22,1);
+    will-change:transform;
+  }
+  .t-carousel-track .t-item{
+    flex:0 0 100%;
+    min-width:100%;
+  }
+  .t-dots{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    margin-top:20px;
+  }
+  .t-dot{
+    width:10px;height:10px;
+    border-radius:100px;
+    border:none;
+    padding:0;
+    background:var(--lilac-200);
+    cursor:pointer;
+    transition:width .35s cubic-bezier(.19,1,.22,1), background .35s ease;
+  }
+  .t-dot:hover{background:var(--violet-400);}
+  .t-dot.active{
+    width:28px;
+    background:var(--violet-600);
+  }
+
   /* modal */
   .modal-overlay{
     position:fixed;inset:0;z-index:1000;
@@ -737,7 +801,7 @@
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="https://app.earnerspay.com/checkout/?p=epr-925052" class="nav-cta">Join JBIS </a></li>
+      <li><a href="https://app.earnerspay.com/checkout/?p=epr-750081" class="nav-cta">Join JBIS </a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu"><i data-lucide="menu"></i></button>
   </nav>
@@ -756,7 +820,7 @@
         <p class="lede">The beginner course that shows you exactly how online business and affiliate marketing work — even if you're starting from zero.</p>
         <div class="cta-row">
           <a href="
-https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS today <i data-lucide="arrow-right"></i></a>
+https://app.earnerspay.com/checkout/?p=epr-750081" class="btn-primary">Join JBIS today <i data-lucide="arrow-right"></i></a>
           <span class="price-hint">One-time investment </span>
         </div>
         <div class="hero-trust">
@@ -917,12 +981,27 @@ https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS
         <div class="t-item" data-full="assets/t2.jpeg"><img src="assets/t2.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
         <div class="t-item" data-full="assets/t3.jpeg"><img src="assets/t3.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
         <div class="t-item" data-full="assets/t4.jpeg"><img src="assets/t4.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
-        <div class="t-item" data-full="assets/t5.jpeg"><img src="assets/t5.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
-        <div class="t-item" data-full="assets/t6.jpeg"><img src="assets/t6.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
-        <div class="t-item" data-full="assets/t7.jpeg"><img src="assets/t7.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
-        <div class="t-item" data-full="assets/t8.jpeg"><img src="assets/t8.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
-        <div class="t-item" data-full="assets/t9.jpeg"><img src="assets/t9.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
-        <!-- <div class="t-item" data-full="assets/WhatsApp_Image_2026-07-11_at_12_52_12_PM.jpeg"><img src="assets/WhatsApp_Image_2026-07-11_at_12_52_12_PM.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div> -->
+      </div>
+
+      <div class="t-carousel reveal" id="tCarousel">
+        <div class="t-carousel-viewport">
+          <button class="t-nav t-prev" id="tPrev" aria-label="Previous testimonial"><i data-lucide="chevron-left"></i></button>
+          <div class="t-carousel-track" id="tTrack">
+            <div class="t-item" data-full="assets/t5.jpeg"><img src="assets/t5.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
+            <div class="t-item" data-full="assets/t6.jpeg"><img src="assets/t6.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
+            <div class="t-item" data-full="assets/t7.jpeg"><img src="assets/t7.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
+            <div class="t-item" data-full="assets/t8.jpeg"><img src="assets/t8.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
+            <div class="t-item" data-full="assets/t9.jpeg"><img src="assets/t9.jpeg" alt="Mentee sales screenshot" loading="lazy"><span class="zoom-hint"><i data-lucide="expand"></i></span></div>
+          </div>
+          <button class="t-nav t-next" id="tNext" aria-label="Next testimonial"><i data-lucide="chevron-right"></i></button>
+        </div>
+        <div class="t-dots" id="tDots">
+          <button class="t-dot active" aria-label="Go to testimonial 1"></button>
+          <button class="t-dot" aria-label="Go to testimonial 2"></button>
+          <button class="t-dot" aria-label="Go to testimonial 3"></button>
+          <button class="t-dot" aria-label="Go to testimonial 4"></button>
+          <button class="t-dot" aria-label="Go to testimonial 5"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -999,7 +1078,7 @@ https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS
         <div class="price-figure"><span>₦</span>20,000</div>
         <p class="price-caption">One-time payment · instant access</p>
         <a href="
-https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS now <i data-lucide="arrow-right"></i></a>
+https://app.earnerspay.com/checkout/?p=epr-750081" class="btn-primary">Join JBIS now <i data-lucide="arrow-right"></i></a>
         <ul class="price-includes">
           <li><i data-lucide="check"></i>10 structured modules</li>
           <li><i data-lucide="check"></i>Beginner-to-zero foundations</li>
@@ -1018,7 +1097,7 @@ https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Join JBIS
       <h2>You don't need to know everything before you begin.</h2>
       <p>You just need a place to start. JBIS was built to be that starting point. Your future is built by the skills you choose to develop today.</p>
       <a href="
-https://app.earnerspay.com/checkout/?p=epr-925052" class="btn-primary">Click to join JBIS <i data-lucide="arrow-right"></i></a>
+https://app.earnerspay.com/checkout/?p=epr-750081" class="btn-primary">Click to join JBIS <i data-lucide="arrow-right"></i></a>
       <p class="final-signature">— Coach Jwealth</p>
     </div>
   </section>
